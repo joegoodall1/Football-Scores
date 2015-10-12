@@ -10,71 +10,7 @@ import android.widget.RemoteViews;
 
 
 public class ScoresWidgetProvider extends AppWidgetProvider {
-    /*public static final String TOAST_ACTION = "com.example.android.stackwidget.TOAST_ACTION";
-    public static final String EXTRA_ITEM = "com.example.android.stackwidget.EXTRA_ITEM";
 
-//    @Override
-//    public void onReceive(Context context, Intent intent) {
-//        AppWidgetManager mgr = AppWidgetManager.getInstance(context);
-//        System.out.println(intent.getAction());
-//        if (intent.getAction().equals(TOAST_ACTION)) {
-//            int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
-//                    AppWidgetManager.INVALID_APPWIDGET_ID);
-//            int viewIndex = intent.getIntExtra(EXTRA_ITEM, 0);
-//            Toast.makeText(context, "Touched view " + viewIndex, Toast.LENGTH_SHORT).show();
-//        }
-//        super.onReceive(context, intent);
-//    }
-
-    @Override
-    public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        System.out.println("ScoresWidgetProvider.onUpdate " + appWidgetIds.length);
-
-        // update each of the widgets with the remote adapter
-        for (int i = 0; i < appWidgetIds.length; ++i) {
-            Intent intent = new Intent(context, FootballScoresWidgetService.class);
-
-            RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
-            rv.setRemoteAdapter(appWidgetIds[i], R.id.list_view, intent);
-
-            rv.setEmptyView(R.id.list_view, R.id.empty_view);
-
-            int appWidgetId = appWidgetIds[i];
-
-            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-
-            intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
-
-            //rv.setRemoteAdapter(appWidgetId, R.id.list_view, intent);
-            //rv.setTextViewText(R.id.title, "hello");
-
-
-            Intent toastIntent = new Intent(context, ScoresWidgetProvider.class);
-            toastIntent.setAction(ScoresWidgetProvider.TOAST_ACTION);
-
-            toastIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-            intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
-            PendingIntent toastPendingIntent = PendingIntent.getBroadcast(
-                    context,
-                    0,
-                    toastIntent,
-                    PendingIntent.FLAG_UPDATE_CURRENT);
-            rv.setPendingIntentTemplate(R.id.list_view, toastPendingIntent);
-
-            //appWidgetManager.updateAppWidget(appWidgetId, null);
-            appWidgetManager.updateAppWidget(appWidgetId, rv);
-        }
-
-        super.onUpdate(context, appWidgetManager, appWidgetIds);
-    }
-
-    *//*@Override
-    public void onReceive(Context context, Intent intent) {
-        super.onReceive(context, intent);
-        if(intent.getAction().equalsIgnoreCase(UPDATE))
-    }*//*
-}
-*/
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -102,7 +38,8 @@ public class ScoresWidgetProvider extends AppWidgetProvider {
                                 int appWidgetId) {
 
         CharSequence widgetText = "";
-        // Construct the RemoteViews object
+
+
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
         views.setTextViewText(1, widgetText);
         Intent intent = new Intent(context, MainActivity.class);
@@ -114,7 +51,8 @@ public class ScoresWidgetProvider extends AppWidgetProvider {
         rvsintent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
         rvsintent.setData(Uri.parse(rvsintent.toUri(Intent.URI_INTENT_SCHEME)));
         views.setRemoteAdapter(R.id.list_view, rvsintent);
-        // Instruct the widget manager to update the widget
+
+
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 }
