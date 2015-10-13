@@ -20,7 +20,7 @@ public class ScoresWidgetProvider extends AppWidgetProvider {
             updateAppWidget(context, appWidgetManager, appWidgetIds[i]);
 
         }
-        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds,R.id.list_view);
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.list_view);
     }
 
 

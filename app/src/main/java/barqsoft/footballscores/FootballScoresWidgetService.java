@@ -23,8 +23,8 @@ public class FootballScoresWidgetService extends RemoteViewsService {
 
         public ListRemoteViewsFactory(Context context, Intent intent) {
             this.mContext = context;
-        mAppWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
-                AppWidgetManager.INVALID_APPWIDGET_ID);
+            mAppWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
+                    AppWidgetManager.INVALID_APPWIDGET_ID);
         }
 
         public void onCreate() {
@@ -46,7 +46,7 @@ public class FootballScoresWidgetService extends RemoteViewsService {
 
             RemoteViews rv = new RemoteViews(mContext.getPackageName(), R.layout.row);
 
-            if(c.moveToPosition(position)){
+            if (c.moveToPosition(position)) {
                 String home_name = c.getString(ScoresAdapter.COL_HOME);
                 String away_name = c.getString(ScoresAdapter.COL_AWAY);
                 String match_time = c.getString(ScoresAdapter.COL_MATCHTIME);
@@ -55,8 +55,8 @@ public class FootballScoresWidgetService extends RemoteViewsService {
                 Double match_id = c.getDouble(ScoresAdapter.COL_ID);
 
                 rv.setTextViewText(R.id.football_widget_game_name, home_name + " v " + away_name);
-                rv.setTextViewText(R.id.football_widget_match_time,   match_time);
-                rv.setTextViewText(R.id.football_widget_score,  score);
+                rv.setTextViewText(R.id.football_widget_match_time, match_time);
+                rv.setTextViewText(R.id.football_widget_score, score);
             }
 
 
@@ -72,11 +72,10 @@ public class FootballScoresWidgetService extends RemoteViewsService {
         }
 
 
-
         @Override
         public long getItemId(int i) {
-            if(c.moveToPosition(i)){
-                return (long)c.getDouble(i);
+            if (c.moveToPosition(i)) {
+                return (long) c.getDouble(i);
             }
             return 0;
 
